@@ -18,6 +18,14 @@ async function buildPage() {
   .then(() => {
     async function createTemplate() {
       let componentsArr = ['{{header}}', '{{articles}}', '{{footer}}'];
+      readdir(
+        pathComponents,
+        (err, files) => {
+          if (err) throw err;
+          for (let filename of files) {
+            componentsArr.push('{{' + filename.split('.')[0].toString() + '}}');
+          }
+        });
       let template = await fsPromises.readFile(pathTemplate, 'utf8');
       for await (const component of componentsArr) {
         const compName = component.slice(2, -2);
