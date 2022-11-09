@@ -11,7 +11,7 @@ const {unlink} = require('fs/promises');
 
   .then(filenames => {
     for (let filename of filenames) {
-      let folderFileDelete = path.join(pathCopyFolder, '\\', filename.toString());
+      let folderFileDelete = path.join(pathCopyFolder, filename.toString());
       (async function (path) {
         try {
           await unlink(path);
@@ -36,8 +36,8 @@ const {unlink} = require('fs/promises');
     (err, files) => {
       if (err) throw err;
       files.forEach(file => {
-        let pathFile = pathFolder + '\\' + file.name.toString();
-        let pathCopyFile = pathCopyFolder + '\\' + file.name.toString();
+        let pathFile = path.join(pathFolder, file.name.toString());
+        let pathCopyFile = path.join(pathCopyFolder, file.name.toString());
         fs.copyFile(pathFile, pathCopyFile, err => {
           if (err) throw err;
         });

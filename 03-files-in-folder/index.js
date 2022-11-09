@@ -9,9 +9,9 @@ fs.readdir(
     if (err) throw err;
     files.forEach(file => {
       if (file.isFile()) {
-        let pathFile = pathFolder + '\\' + file.name.toString();
+        let pathFile = path.join(pathFolder,file.name.toString());
         fs.stat(pathFile, (err, stats) => {
-          let fileSize = stats.size / 1000 + 'kb';
+          let fileSize = stats.size / 1024 + 'kb';
           let fileName = file.name.toString().split('.')[0];
           let fileExe = file.name.toString().split('.')[1];
           console.log(fileName + ' - ' + fileExe + ' - ' + fileSize);

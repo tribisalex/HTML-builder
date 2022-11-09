@@ -11,7 +11,7 @@ fs.promises.readdir(pathCopyFolder)
 .then(filenames => {
   for (let filename of filenames) {
     if (filename.toString() === 'bundle.css') {
-      let folderFileDelete = path.join(pathCopyFolder, '\\', filename.toString());
+      let folderFileDelete = path.join(pathCopyFolder, filename.toString());
       (async function (path) {
         try {
           await unlink(path);
@@ -38,7 +38,7 @@ readdir(
           'utf8'
         );
         fileStyle.then((result) => {
-          appendFile(pathCopyFolder + '\\' + 'bundle.css', '\n' + result);
+          appendFile(path.join(pathCopyFolder, 'bundle.css'), '\n' + result);
         });
       }
     }

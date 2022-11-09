@@ -50,7 +50,7 @@ async function buildPage() {
               'utf8'
             );
             fileStyle.then((result) => {
-              appendFile(projectDistFolder + '\\' + 'style.css', '\n' + result);
+              appendFile(path.join(projectDistFolder, 'style.css'), '\n' + result);
             });
           }
         }
